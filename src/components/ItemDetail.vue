@@ -1,8 +1,10 @@
 <template>
 
-  <li>
+  <li style="margin-top: 0.5em">
     <span class="fake-link" @click="updateItemModifyIndex(item.id)">{{ item.id + 1 }}. {{ item.message }}</span>
-    <item-modify :item="item" v-if="itemModifyIndex === item.id"></item-modify>
+    <transition name="fade" mode="out-in">
+      <item-modify :item="item" v-if="itemModifyIndex === item.id"></item-modify>
+    </transition>
   </li>
 
 </template>
@@ -33,7 +35,6 @@ export default {
       } else {
         this.$store.commit('itemModifyIndex', this.item.id);
       }
-
     },
     itemUpdate: function () {
       return false;
@@ -48,5 +49,14 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 
 </style>

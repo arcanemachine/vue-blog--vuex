@@ -1,4 +1,0 @@
-- create total number of items
-- create vuex action
-  - update total
-- move store into its own file
